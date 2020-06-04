@@ -6,7 +6,7 @@ license = "MIT OR Apache-2.0"
 edition = "2018"
 
 [dependencies]
-winapi = { version = "0.3.8", features = ["guiddef", "impl-debug", "impl-default", "minwindef", "windef", "winerror"] }
+winapi = { version = "0.3.8", features = ["guiddef", "impl-debug", "impl-default", "minwindef", "windef", "winerror", "unknwnbase"] }
 cfg-if = "0.1.10"
 image = { version = "0.23.4", default-features = false }
 field-offset = "0.3.1"

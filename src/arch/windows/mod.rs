@@ -27,6 +27,15 @@ mod sys {
     pub use winapi::shared::{
         guiddef::GUID, minwindef::FILETIME, windef::HBITMAP,
     };
+    use winapi::Interface;
 
     include!("bindings.rs");
+
+    impl Interface for IThumbnailProvider {
+        fn uuidof() -> GUID { unimplemented!() }
+    }
+
+    impl Interface for IInitializeWithStream {
+        fn uuidof() -> GUID { unimplemented!() }
+    }
 }
