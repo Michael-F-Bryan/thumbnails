@@ -8,7 +8,7 @@ use crate::{
 use field_offset::FieldOffset;
 use std::{
     io::{self, Read},
-    os::raw::{c_long, c_ulong, c_void},
+    os::raw::{c_ulong, c_void},
     ptr,
     sync::atomic::{AtomicPtr, AtomicU32, Ordering},
 };

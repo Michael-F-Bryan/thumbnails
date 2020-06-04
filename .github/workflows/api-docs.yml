@@ -20,6 +20,8 @@ jobs:
         with:
           command: doc
           args: --all --verbose
+        env:
+          RUSTDOCFLAGS: "--cfg=docsrs"
       - name: Redirect top-level GitHub Pages
         run: "echo '<meta http-equiv=\"refresh\" content=\"0; url=thumbnails/index.html\" />' > target/doc/index.html"
         shell: bash

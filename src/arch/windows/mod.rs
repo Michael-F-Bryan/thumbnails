@@ -23,7 +23,7 @@ pub use wrapper::Wrapper;
 /// $header = "C:\Program Files (x86)\Windows Kits\10\Include\10.0.19041.0\um\thumbcache.h"
 /// ```
 #[allow(bad_style, dead_code)]
-mod sys {
+pub mod sys {
     pub use winapi::shared::{
         guiddef::GUID, minwindef::FILETIME, windef::HBITMAP,
     };
