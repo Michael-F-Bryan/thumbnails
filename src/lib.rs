@@ -13,7 +13,7 @@ pub struct Dimensions {
 
 pub trait ThumbnailProvider: Send + Sync {
     type Thumbnail: GenericImageView;
-    type Error: std::error::Error;
+    type Error: std::error::Error + Send + Sync + 'static;
 
     fn get_thumbnail<R>(
         &self,

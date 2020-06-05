@@ -21,7 +21,7 @@
 
 use std::{
     fmt::{self, Display, Formatter},
-    os::raw::{c_long, c_uchar, c_ulong, c_ushort},
+    os::raw::{c_uchar, c_ulong, c_ushort},
 };
 
 include!("bindings.rs");
