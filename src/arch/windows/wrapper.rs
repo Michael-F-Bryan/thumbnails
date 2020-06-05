@@ -1,7 +1,7 @@
 use crate::{
     arch::windows::sys::{
         IInitializeWithStream, IInitializeWithStreamVtbl, IStream,
-        IThumbnailProvider, IThumbnailProviderVtbl,
+        IThumbnailProvider, IThumbnailProviderVtbl, IUnknown, GUID, HBITMAP,
     },
     Dimensions, ThumbnailProvider,
 };
@@ -12,15 +12,7 @@ use std::{
     ptr,
     sync::atomic::{AtomicPtr, AtomicU32, Ordering},
 };
-use winapi::{
-    shared::{
-        guiddef::{IsEqualGUID, GUID},
-        windef::HBITMAP,
-        winerror::{HRESULT, SUCCEEDED, S_OK},
-    },
-    um::unknwnbase::IUnknown,
-    Interface,
-};
+use winapi::shared::winerror::{HRESULT, SUCCEEDED, S_OK};
 
 /// A COM adapter that can be used as an [`IThumbnailProvider`].
 #[repr(C)]
@@ -107,13 +99,13 @@ impl<P> Wrapper<P> {
         guid: &GUID,
         p: *mut *mut c_void,
     ) -> HRESULT {
-        if IsEqualGUID(guid, &IUnknown::uuidof()) {
+        if guid == &IUnknown::IID {
             *p = self as *const Self as *mut Self as *mut c_void;
             S_OK
-        } else if IsEqualGUID(guid, &IThumbnailProvider::uuidof()) {
+        } else if guid == &IThumbnailProvider::IID {
             *p = self.as_thumbnail_provider() as *mut c_void;
             S_OK
-        } else if IsEqualGUID(guid, &IInitializeWithStream::uuidof()) {
+        } else if guid == &IInitializeWithStream::IID {
             *p = self.as_initialize_with_stream() as *mut c_void;
             S_OK
         } else {
@@ -219,14 +211,14 @@ unsafe extern "C" fn thumbnail_provider_get_thumbnail<P>(
     this: *mut IThumbnailProvider,
     width: u32,
     bitmap: *mut HBITMAP,
-    pdwAlpha: *mut i32,
+    alpha: *mut i32,
 ) -> HRESULT
 where
     P: ThumbnailProvider,
 {
     assert!(!this.is_null());
     assert!(!bitmap.is_null());
-    assert!(!pdwAlpha.is_null());
+    assert!(!alpha.is_null());
 
     let this = Wrapper::<P>::from_thumbnail_provider(this);
     let dims = Dimensions {

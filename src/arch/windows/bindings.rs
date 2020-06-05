@@ -19,7 +19,7 @@ pub union _LARGE_INTEGER {
     _bindgen_union_align: u64,
 }
 #[repr(C)]
-#[derive(Debug, Default, Copy, Clone)]
+#[derive(Debug, Default, Copy, Clone, PartialEq)]
 pub struct _LARGE_INTEGER__bindgen_ty_1 {
     pub LowPart: DWORD,
     pub HighPart: LONG,
@@ -64,7 +64,7 @@ fn bindgen_test_layout__LARGE_INTEGER__bindgen_ty_1() {
     );
 }
 #[repr(C)]
-#[derive(Debug, Default, Copy, Clone)]
+#[derive(Debug, Default, Copy, Clone, PartialEq)]
 pub struct _LARGE_INTEGER__bindgen_ty_2 {
     pub LowPart: DWORD,
     pub HighPart: LONG,
@@ -164,7 +164,7 @@ pub union _ULARGE_INTEGER {
     _bindgen_union_align: u64,
 }
 #[repr(C)]
-#[derive(Debug, Default, Copy, Clone)]
+#[derive(Debug, Default, Copy, Clone, PartialEq)]
 pub struct _ULARGE_INTEGER__bindgen_ty_1 {
     pub LowPart: DWORD,
     pub HighPart: DWORD,
@@ -209,7 +209,7 @@ fn bindgen_test_layout__ULARGE_INTEGER__bindgen_ty_1() {
     );
 }
 #[repr(C)]
-#[derive(Debug, Default, Copy, Clone)]
+#[derive(Debug, Default, Copy, Clone, PartialEq)]
 pub struct _ULARGE_INTEGER__bindgen_ty_2 {
     pub LowPart: DWORD,
     pub HighPart: DWORD,
@@ -301,7 +301,7 @@ impl ::std::fmt::Debug for _ULARGE_INTEGER {
 }
 pub type ULARGE_INTEGER = _ULARGE_INTEGER;
 #[repr(C)]
-#[derive(Debug, Default, Copy, Clone)]
+#[derive(Debug, Default, Copy, Clone, PartialEq)]
 pub struct _GUID {
     pub Data1: ::std::os::raw::c_ulong,
     pub Data2: ::std::os::raw::c_ushort,
@@ -361,10 +361,11 @@ fn bindgen_test_layout__GUID() {
         )
     );
 }
+pub type GUID = _GUID;
 pub type IID = GUID;
 pub type CLSID = GUID;
 #[repr(C)]
-#[derive(Debug, Default, Copy, Clone)]
+#[derive(Debug, Default, Copy, Clone, PartialEq)]
 pub struct _FILETIME {
     pub dwLowDateTime: DWORD,
     pub dwHighDateTime: DWORD,
@@ -408,8 +409,9 @@ fn bindgen_test_layout__FILETIME() {
         )
     );
 }
+pub type FILETIME = _FILETIME;
 #[repr(C)]
-#[derive(Debug, Default, Copy, Clone)]
+#[derive(Debug, Default, Copy, Clone, PartialEq)]
 pub struct HBITMAP__ {
     pub unused: ::std::os::raw::c_int,
 }
@@ -438,10 +440,11 @@ fn bindgen_test_layout_HBITMAP__() {
         )
     );
 }
+pub type HBITMAP = *mut HBITMAP__;
 pub type OLECHAR = WCHAR;
 pub type LPOLESTR = *mut OLECHAR;
 #[repr(C)]
-#[derive(Debug, Default, Copy, Clone)]
+#[derive(Debug, Default, Copy, Clone, PartialEq)]
 pub struct IUnknownVtbl {
     pub QueryInterface: ::std::option::Option<
         unsafe extern "C" fn(
@@ -509,7 +512,7 @@ fn bindgen_test_layout_IUnknownVtbl() {
     );
 }
 #[repr(C)]
-#[derive(Debug, Copy, Clone)]
+#[derive(Debug, Copy, Clone, PartialEq)]
 pub struct IUnknown {
     pub lpVtbl: *mut IUnknownVtbl,
 }
@@ -542,7 +545,7 @@ impl Default for IUnknown {
     fn default() -> Self { unsafe { ::std::mem::zeroed() } }
 }
 #[repr(C)]
-#[derive(Debug, Default, Copy, Clone)]
+#[derive(Debug, Default, Copy, Clone, PartialEq)]
 pub struct IClassFactoryVtbl {
     pub QueryInterface: ::std::option::Option<
         unsafe extern "C" fn(
@@ -648,7 +651,7 @@ fn bindgen_test_layout_IClassFactoryVtbl() {
     );
 }
 #[repr(C)]
-#[derive(Debug, Copy, Clone)]
+#[derive(Debug, Copy, Clone, PartialEq)]
 pub struct IClassFactory {
     pub lpVtbl: *mut IClassFactoryVtbl,
 }
@@ -682,6 +685,7 @@ impl Default for IClassFactory {
     fn default() -> Self { unsafe { ::std::mem::zeroed() } }
 }
 #[repr(C)]
+#[derive(Copy, Clone)]
 pub struct tagSTATSTG {
     pub pwcsName: LPOLESTR,
     pub type_: DWORD,
@@ -847,12 +851,12 @@ impl Default for tagSTATSTG {
 }
 impl ::std::fmt::Debug for tagSTATSTG {
     fn fmt(&self, f: &mut ::std::fmt::Formatter<'_>) -> ::std::fmt::Result {
-        write ! ( f , "tagSTATSTG {{ pwcsName: {:?}, type: {:?}, cbSize: {:?}, grfMode: {:?}, grfLocksSupported: {:?}, grfStateBits: {:?}, reserved: {:?} }}" , self . pwcsName , self . type_ , self . cbSize , self . grfMode , self . grfLocksSupported , self . grfStateBits , self . reserved )
+        write ! ( f , "tagSTATSTG {{ pwcsName: {:?}, type: {:?}, cbSize: {:?}, mtime: {:?}, ctime: {:?}, atime: {:?}, grfMode: {:?}, grfLocksSupported: {:?}, clsid: {:?}, grfStateBits: {:?}, reserved: {:?} }}" , self . pwcsName , self . type_ , self . cbSize , self . mtime , self . ctime , self . atime , self . grfMode , self . grfLocksSupported , self . clsid , self . grfStateBits , self . reserved )
     }
 }
 pub type STATSTG = tagSTATSTG;
 #[repr(C)]
-#[derive(Debug, Default, Copy, Clone)]
+#[derive(Debug, Default, Copy, Clone, PartialEq)]
 pub struct IStreamVtbl {
     pub QueryInterface: ::std::option::Option<
         unsafe extern "C" fn(
@@ -1130,7 +1134,7 @@ fn bindgen_test_layout_IStreamVtbl() {
     );
 }
 #[repr(C)]
-#[derive(Debug, Copy, Clone)]
+#[derive(Debug, Copy, Clone, PartialEq)]
 pub struct IStream {
     pub lpVtbl: *mut IStreamVtbl,
 }
@@ -1163,7 +1167,7 @@ impl Default for IStream {
     fn default() -> Self { unsafe { ::std::mem::zeroed() } }
 }
 #[repr(C)]
-#[derive(Debug, Default, Copy, Clone)]
+#[derive(Debug, Default, Copy, Clone, PartialEq)]
 pub struct IInitializeWithStreamVtbl {
     pub QueryInterface: ::std::option::Option<
         unsafe extern "C" fn(
@@ -1252,7 +1256,7 @@ fn bindgen_test_layout_IInitializeWithStreamVtbl() {
     );
 }
 #[repr(C)]
-#[derive(Debug, Copy, Clone)]
+#[derive(Debug, Copy, Clone, PartialEq)]
 pub struct IInitializeWithStream {
     pub lpVtbl: *mut IInitializeWithStreamVtbl,
 }
@@ -1290,7 +1294,7 @@ pub const WTS_ALPHATYPE_WTSAT_RGB: WTS_ALPHATYPE = 1;
 pub const WTS_ALPHATYPE_WTSAT_ARGB: WTS_ALPHATYPE = 2;
 pub type WTS_ALPHATYPE = i32;
 #[repr(C)]
-#[derive(Debug, Default, Copy, Clone)]
+#[derive(Debug, Default, Copy, Clone, PartialEq)]
 pub struct IThumbnailProviderVtbl {
     pub QueryInterface: ::std::option::Option<
         unsafe extern "C" fn(
@@ -1380,7 +1384,7 @@ fn bindgen_test_layout_IThumbnailProviderVtbl() {
     );
 }
 #[repr(C)]
-#[derive(Debug, Copy, Clone)]
+#[derive(Debug, Copy, Clone, PartialEq)]
 pub struct IThumbnailProvider {
     pub lpVtbl: *mut IThumbnailProviderVtbl,
 }
