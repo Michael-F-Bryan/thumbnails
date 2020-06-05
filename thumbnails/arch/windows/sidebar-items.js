@@ -1,0 +1,1 @@
+initSidebarItems({"mod":[["sys","Type declarations for `thumbcache.h`."]],"struct":[["Wrapper","A COM adapter that can be used as an [`IThumbnailProvider`]."]]});

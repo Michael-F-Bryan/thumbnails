@@ -1,0 +1,1 @@
+initSidebarItems({"macro":[["offset_of","This macro allows safe construction of a FieldOffset, by generating a known to be valid lambda to pass to the constructor. It takes a type and the identifier of a field within that type as input."]],"struct":[["FieldOffset","Represents a pointer to a field of type `U` within the type `T`"]]});

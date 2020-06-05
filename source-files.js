@@ -1,0 +1,13 @@
+var N = null;var sourcesIndex = {};
+sourcesIndex["bytemuck"] = {"name":"","files":["contiguous.rs","lib.rs","offset_of.rs","pod.rs","transparent.rs","zeroable.rs"]};
+sourcesIndex["byteorder"] = {"name":"","files":["io.rs","lib.rs"]};
+sourcesIndex["cfg_if"] = {"name":"","files":["lib.rs"]};
+sourcesIndex["field_offset"] = {"name":"","files":["lib.rs"]};
+sourcesIndex["image"] = {"name":"","dirs":[{"name":"imageops","files":["affine.rs","colorops.rs","mod.rs","sample.rs"]},{"name":"io","files":["free_functions.rs","mod.rs","reader.rs"]},{"name":"math","files":["mod.rs","nq.rs","rect.rs","utils.rs"]},{"name":"utils","files":["mod.rs"]}],"files":["animation.rs","buffer.rs","color.rs","dynimage.rs","error.rs","flat.rs","image.rs","lib.rs","traits.rs"]};
+sourcesIndex["memoffset"] = {"name":"","files":["lib.rs","offset_of.rs","span_of.rs"]};
+sourcesIndex["num_integer"] = {"name":"","files":["lib.rs","roots.rs"]};
+sourcesIndex["num_iter"] = {"name":"","files":["lib.rs"]};
+sourcesIndex["num_rational"] = {"name":"","files":["lib.rs"]};
+sourcesIndex["num_traits"] = {"name":"","dirs":[{"name":"ops","files":["checked.rs","inv.rs","mod.rs","mul_add.rs","saturating.rs","wrapping.rs"]}],"files":["bounds.rs","cast.rs","float.rs","identities.rs","int.rs","lib.rs","macros.rs","pow.rs","real.rs","sign.rs"]};
+sourcesIndex["thumbnails"] = {"name":"","dirs":[{"name":"arch","dirs":[{"name":"windows","files":["bindings.rs","mod.rs","sys.rs","wrapper.rs"]}],"files":["mod.rs"]}],"files":["lib.rs"]};
+createSourceSidebar();
