@@ -3,7 +3,7 @@
 macro_rules! gated {
     ($( #[cfg($cfg:meta)] $item:item )*) => {
         $(
-            #[cfg(any(not($cfg), all(doc, docsrs)))]
+            #[cfg(any($cfg, all(doc)))]
             #[cfg_attr(docsrs, doc(cfg($cfg)))]
             $item
         )*

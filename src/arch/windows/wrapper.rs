@@ -118,7 +118,7 @@ unsafe extern "C" fn init_with_stream_add_ref<P>(
     this: *mut IInitializeWithStream,
 ) -> c_ulong {
     let this = Wrapper::<P>::from_initialize_with_stream(this);
-    this.ref_count.fetch_add(1, Ordering::SeqCst) + 1
+    this.ref_count.fetch_add(1, Ordering::SeqCst) as c_ulong + 1
 }
 
 unsafe extern "C" fn init_with_stream_release<P>(
@@ -131,7 +131,7 @@ unsafe extern "C" fn init_with_stream_release<P>(
         let _ = Box::from_raw(this as *const _ as *mut Wrapper<P>);
     }
 
-    count
+    count as c_ulong
 }
 
 unsafe extern "C" fn init_with_stream_query_interface<P>(
@@ -178,7 +178,7 @@ unsafe extern "C" fn thumbnail_provider_add_ref<P>(
     this: *mut IThumbnailProvider,
 ) -> c_ulong {
     let this = Wrapper::<P>::from_thumbnail_provider(this);
-    this.ref_count.fetch_add(1, Ordering::SeqCst) + 1
+    this.ref_count.fetch_add(1, Ordering::SeqCst) as c_ulong + 1
 }
 
 unsafe extern "C" fn thumbnail_provider_release<P>(
@@ -191,7 +191,7 @@ unsafe extern "C" fn thumbnail_provider_release<P>(
         let _ = Box::from_raw(this as *const _ as *mut Wrapper<P>);
     }
 
-    count
+    count as c_ulong
 }
 
 unsafe extern "C" fn thumbnail_provider_query_interface<P>(
@@ -257,7 +257,7 @@ impl Read for StreamReader {
             if SUCCEEDED(ret) {
                 return Ok(bytes_read as usize);
             } else {
-                return Err(io::Error::from_raw_os_error(ret));
+                return Err(io::Error::from_raw_os_error(ret as _));
             }
         }
     }
