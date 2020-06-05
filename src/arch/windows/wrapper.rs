@@ -116,14 +116,14 @@ impl<P> Wrapper<P> {
 
 unsafe extern "C" fn init_with_stream_add_ref<P>(
     this: *mut IInitializeWithStream,
-) -> u32 {
+) -> c_ulong {
     let this = Wrapper::<P>::from_initialize_with_stream(this);
     this.ref_count.fetch_add(1, Ordering::SeqCst) + 1
 }
 
 unsafe extern "C" fn init_with_stream_release<P>(
     this: *mut IInitializeWithStream,
-) -> u32 {
+) -> c_ulong {
     let this = Wrapper::<P>::from_initialize_with_stream(this);
     let count = this.ref_count.fetch_sub(1, Ordering::SeqCst);
 
@@ -138,7 +138,7 @@ unsafe extern "C" fn init_with_stream_query_interface<P>(
     this: *mut IInitializeWithStream,
     guid: *const GUID,
     p: *mut *mut c_void,
-) -> i32 {
+) -> HRESULT {
     assert!(!this.is_null());
     assert!(!guid.is_null());
     assert!(!p.is_null());
@@ -176,14 +176,14 @@ unsafe extern "C" fn init_with_stream_initialize<P>(
 
 unsafe extern "C" fn thumbnail_provider_add_ref<P>(
     this: *mut IThumbnailProvider,
-) -> u32 {
+) -> c_ulong {
     let this = Wrapper::<P>::from_thumbnail_provider(this);
     this.ref_count.fetch_add(1, Ordering::SeqCst) + 1
 }
 
 unsafe extern "C" fn thumbnail_provider_release<P>(
     this: *mut IThumbnailProvider,
-) -> u32 {
+) -> c_ulong {
     let this = Wrapper::<P>::from_thumbnail_provider(this);
     let count = this.ref_count.fetch_sub(1, Ordering::SeqCst);
 
