@@ -11,7 +11,7 @@ use std::{
     io::{self, Read},
     os::raw::{c_ulong, c_void},
     ptr,
-    sync::atomic::{AtomicPtr, AtomicU32, Ordering},
+    sync::atomic::{AtomicPtr, AtomicUsize, Ordering},
 };
 
 /// A COM adapter that can be used as an [`IThumbnailProvider`].
@@ -20,7 +20,7 @@ pub struct Wrapper<P> {
     stream_vtable: *mut IInitializeWithStreamVtbl,
     thumbnail_vtable: *mut IThumbnailProviderVtbl,
 
-    ref_count: AtomicU32,
+    ref_count: AtomicUsize,
     stream: AtomicPtr<IStream>,
     provider: P,
 }
@@ -44,7 +44,7 @@ impl<P: ThumbnailProvider + Send + Sync + 'static> Wrapper<P> {
         Wrapper {
             stream_vtable: &mut Wrapper::<P>::INITIALIZE_WITH_STREAM_VTABLE,
             thumbnail_vtable: &mut Wrapper::<P>::THUMBNAIL_VTABLE,
-            ref_count: AtomicU32::new(1),
+            ref_count: AtomicUsize::new(1),
             stream: AtomicPtr::default(),
             provider,
         }
