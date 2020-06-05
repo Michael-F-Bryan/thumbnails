@@ -2,6 +2,7 @@ use crate::{
     arch::windows::sys::{
         IInitializeWithStream, IInitializeWithStreamVtbl, IStream,
         IThumbnailProvider, IThumbnailProviderVtbl, IUnknown, GUID, HBITMAP,
+        HRESULT, SUCCEEDED, S_OK,
     },
     Dimensions, ThumbnailProvider,
 };
@@ -12,7 +13,6 @@ use std::{
     ptr,
     sync::atomic::{AtomicPtr, AtomicU32, Ordering},
 };
-use winapi::shared::winerror::{HRESULT, SUCCEEDED, S_OK};
 
 /// A COM adapter that can be used as an [`IThumbnailProvider`].
 #[repr(C)]

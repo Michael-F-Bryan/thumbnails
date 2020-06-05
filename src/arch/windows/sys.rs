@@ -21,10 +21,16 @@
 
 use std::{
     fmt::{self, Display, Formatter},
-    os::raw::{c_uchar, c_ulong, c_ushort},
+    os::raw::{c_long, c_uchar, c_ulong, c_ushort},
 };
 
 include!("bindings.rs");
+
+// we need to write these manually because they are macros.
+pub const S_OK: HRESULT = 0;
+pub const S_FALSE: HRESULT = 1;
+pub fn SUCCEEDED(hr: HRESULT) -> bool { hr >= 0 }
+pub fn FAILED(hr: HRESULT) -> bool { hr < 0 }
 
 impl GUID {
     pub const fn new(
